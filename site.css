@@ -170,11 +170,111 @@ footer p {
     color: var(--text-sec);
 }
 
+/* App Detail Styles */
+.app-detail {
+    padding: 60px 0;
+}
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.detail-header img {
+    width: 120px;
+    height: 120px;
+    border-radius: 28px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.detail-info h1 {
+    font-size: 40px;
+    margin-bottom: 8px;
+}
+
+.app-screenshot-container {
+    background: var(--card-bg);
+    border-radius: 40px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.app-screenshot-container img {
+    max-width: 100%;
+    max-height: 600px;
+    border-radius: 20px;
+}
+
+.features-list {
+    margin-bottom: 48px;
+}
+
+.features-list h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.features-list ul {
+    list-style: none;
+}
+
+.features-list li {
+    font-size: 18px;
+    margin-bottom: 12px;
+    padding-left: 28px;
+    position: relative;
+}
+
+.features-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.download-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    transition: transform 0.2s;
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+}
+
+.secondary-links {
+    margin-top: 40px;
+    display: flex;
+    gap: 24px;
+}
+
+.secondary-links a {
+    color: var(--text-sec);
+    text-decoration: none;
+    font-size: 14px;
+}
+
 @media (max-width: 600px) {
-    h1 {
-        font-size: 36px;
+    .detail-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
     }
-    .hero {
-        padding: 40px 0;
+    .detail-header img {
+        width: 100px;
+        height: 100px;
+    }
+    .detail-info h1 {
+        font-size: 32px;
     }
 }
