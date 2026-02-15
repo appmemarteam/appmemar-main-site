@@ -7,7 +7,11 @@ apps = {
         "icon": "appicon.png",
         "features": ["Recite and Tap.", "Handy and Easy to use", "Unlimited Tasbeeh.", "No Ads - 100% Free, 100% Offline."],
         "url": "https://apps.apple.com/us/app/id1534763309",
-        "iap": False
+        "iap": False,
+        "description": "A minimalist and beautiful digital Zikr counter (Tasbeeh) for iOS. Focus on your dhikr without ads or distractions.",
+        "keywords": "itasbeeh, digital tasbeeh, zikr counter, dhikr app, islamic prayer counter, subha, tasbih",
+        "category": "Utilities",
+        "app_id": "1534763309"
     },
     "aqwal": {
         "name": "Aqwal",
@@ -15,7 +19,10 @@ apps = {
         "icon": "appicon.png",
         "features": ["Daily Wisdom.", "Beautiful Minimalist UI.", "Share with Friends.", "Works Offline."],
         "url": "#",
-        "iap": False
+        "iap": False,
+        "description": "Discover inspiring Islamic quotes and daily wisdom. Beautiful typography and easy sharing features.",
+        "keywords": "aqwal, islamic quotes, daily wisdom, quran quotes, hadith quotes, inspiring quotes",
+        "category": "Education"
     },
     "asmaulhusna": {
         "name": "Asma ul Husna",
@@ -23,7 +30,10 @@ apps = {
         "icon": "appicon.png",
         "features": ["Full Meanings & Benefits.", "Beautiful Audio.", "Daily Reminder.", "Progress Tracking."],
         "url": "#",
-        "iap": False
+        "iap": False,
+        "description": "Learn and recite the 99 Names of Allah with meanings, benefits, and beautiful audio recitations.",
+        "keywords": "asma ul husna, 99 names of allah, allah names app, islamic education, names of god",
+        "category": "Education"
     },
     "asmaunnabi": {
         "name": "Asma un Nabi",
@@ -31,7 +41,10 @@ apps = {
         "icon": "appicon.png",
         "features": ["Authentic Meanings.", "Elegant Typography.", "Lightweight & Fast.", "No Subscriptions."],
         "url": "#",
-        "iap": False
+        "iap": False,
+        "description": "A dedicated app for learning the names and attributes of Prophet Muhammad (PBUH) with authentic meanings.",
+        "keywords": "asma un nabi, names of prophet, muhammad names, islamic apps, prophetic attributes",
+        "category": "Education"
     },
     "digipin": {
         "name": "Digipin India",
@@ -39,7 +52,10 @@ apps = {
         "icon": "appicon.png",
         "features": ["Find PIN codes instantly.", "Location based search.", "Official Data.", "Offline Support."],
         "url": "#",
-        "iap": False
+        "iap": False,
+        "description": "The fastest way to find Indian Post Office PIN codes. Location-based search and offline support.",
+        "keywords": "digipin, pin code india, post office finder, pincode search, india post app",
+        "category": "Utilities"
     },
     "llm": {
         "name": "LLM Leaderboard",
@@ -47,7 +63,10 @@ apps = {
         "icon": "appicon.png",
         "features": ["Latest Benchmark Scores.", "Compare Performance.", "Price Tracker.", "Open Source Models."],
         "url": "#",
-        "iap": False
+        "iap": False,
+        "description": "Track and compare the latest AI Large Language Models (LLMs) by benchmarks, pricing, and performance.",
+        "keywords": "llm leaderboard, ai benchmarks, model comparison, openai vs anthropic, ai price tracker",
+        "category": "Developer Tools"
     },
     "meshly": {
         "name": "Meshly",
@@ -55,7 +74,10 @@ apps = {
         "icon": "appicon.jpg",
         "features": ["Chat without Internet.", "Mesh Networking.", "End-to-End Encryption.", "Nearby Discovery."],
         "url": "#",
-        "iap": True
+        "iap": True,
+        "description": "Secure, internet-free communication using mesh networking. Chat with nearby users privately.",
+        "keywords": "meshly, offline chat, no internet messaging, mesh network app, private nearby chat",
+        "category": "Social Networking"
     },
     "quoteswipe": {
         "name": "QuoteSwipe",
@@ -63,7 +85,10 @@ apps = {
         "icon": "appicon.png",
         "features": ["Swipe through thousands of quotes.", "Curate your favorites.", "Custom background designs.", "Export for Social Media."],
         "url": "#",
-        "iap": True
+        "iap": True,
+        "description": "Swipe through thousands of curated quotes. Save your favorites and create beautiful social media posts.",
+        "keywords": "quoteswipe, quote app, swiping quotes, daily inspiration, social media quote maker",
+        "category": "Lifestyle"
     },
     "tt": {
         "name": "TimeTracking",
@@ -71,7 +96,10 @@ apps = {
         "icon": "appicon.png",
         "features": ["Simple Task Timer.", "Visual Reports.", "Minimalist Interface.", "Privacy Focused."],
         "url": "#",
-        "iap": False
+        "iap": False,
+        "description": "A privacy-focused time tracking app for professionals and students. Simple, fast, and local-only.",
+        "keywords": "time tracking, productivity app, focus timer, work log, privacy time tracker",
+        "category": "Productivity"
     }
 }
 
@@ -80,14 +108,62 @@ template = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{name} — AppMemar</title>
+    <title>{name} — {subtitle} | AppMemar</title>
+    <meta name="description" content="{description}">
+    <meta name="keywords" content="{keywords}">
+    <meta name="author" content="AppMemar">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://appmemar.in/{folder}/">
+    <meta property="og:title" content="{name} — {subtitle}">
+    <meta property="og:description" content="{description}">
+    <meta property="og:image" content="https://appmemar.in/{folder}/{icon}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://appmemar.in/{folder}/">
+    <meta property="twitter:title" content="{name} — {subtitle}">
+    <meta property="twitter:description" content="{description}">
+    <meta property="twitter:image" content="https://appmemar.in/{folder}/{icon}">
+
+    <!-- Smart App Banner -->
+    {app_banner}
+
     <link rel="stylesheet" href="../site.css">
+    <link rel="canonical" href="https://appmemar.in/{folder}/">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {{
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "{name}",
+      "operatingSystem": "iOS",
+      "applicationCategory": "{category}",
+      "description": "{description}",
+      "author": {{
+        "@type": "Organization",
+        "name": "AppMemar",
+        "url": "https://appmemar.in"
+      }},
+      "offers": {{
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }}
+    }}
+    </script>
 </head>
 <body>
     <header>
         <div class="container">
             <nav>
                 <div class="logo"><a href="../index.html" style="text-decoration: none; color: inherit;">AppMemar</a></div>
+                <div class="socials">
+                    <a href="mailto:iappmemar@gmail.com">Support</a>
+                    <a href="privacy.html">Privacy</a>
+                </div>
             </nav>
         </div>
     </header>
@@ -95,7 +171,7 @@ template = """<!DOCTYPE html>
     <main class="app-detail">
         <div class="container">
             <div class="detail-header">
-                <img src="{icon}" alt="{name} Icon">
+                <img src="{icon}" alt="{name} App Icon - {subtitle}">
                 <div class="detail-info">
                     <h1>{name}</h1>
                     <p class="subtitle">{subtitle}</p>
@@ -136,7 +212,9 @@ privacy_template = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - {name}</title>
+    <title>Privacy Policy - {name} | AppMemar</title>
+    <meta name="description" content="Privacy Policy for {name} app by AppMemar. We value your privacy.">
+    <meta name="robots" content="noindex">
     <link rel="stylesheet" href="../site.css">
 </head>
 <body>
@@ -202,17 +280,16 @@ def find_screenshot(folder):
             return p
     return None
 
+sitemap_urls = ["https://appmemar.in/"]
+
 for folder, data in apps.items():
     if not os.path.exists(folder):
         os.makedirs(folder)
     
     features_html = "".join([f"<li>{f}</li>" for f in data["features"]])
-    
     screenshot = find_screenshot(folder)
-    if screenshot:
-        screenshot_html = f'<div class="app-screenshot-container"><img src="{screenshot}" alt="{data["name"]} Screenshot"></div>'
-    else:
-        screenshot_html = ""
+    screenshot_html = f'<div class="app-screenshot-container"><img src="{screenshot}" alt="{data["name"]} App Screenshot"></div>' if screenshot else ""
+    app_banner = f'<meta name="apple-itunes-app" content="app-id={data["app_id"]}">' if "app_id" in data else ""
     
     # Generate index.html
     html = template.format(
@@ -221,10 +298,17 @@ for folder, data in apps.items():
         icon=data["icon"],
         screenshot_html=screenshot_html,
         features_html=features_html,
-        url=data["url"]
+        url=data["url"],
+        description=data["description"],
+        keywords=data["keywords"],
+        folder=folder,
+        category=data.get("category", "Utilities"),
+        app_banner=app_banner
     )
     with open(os.path.join(folder, "index.html"), "w") as f:
         f.write(html)
+    
+    sitemap_urls.append(f"https://appmemar.in/{folder}/")
         
     # Generate privacy.html
     iap_section = iap_privacy if data["iap"] else ""
@@ -232,4 +316,16 @@ for folder, data in apps.items():
     with open(os.path.join(folder, "privacy.html"), "w") as f:
         f.write(privacy_html)
 
-print("Generated pages for all apps.")
+# Generate sitemap.xml
+with open("sitemap.xml", "w") as f:
+    f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+    f.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
+    for url in sitemap_urls:
+        f.write(f'  <url><loc>{url}</loc></url>\n')
+    f.write('</urlset>')
+
+# Generate robots.txt
+with open("robots.txt", "w") as f:
+    f.write("User-agent: *\nAllow: /\nSitemap: https://appmemar.in/sitemap.xml")
+
+print("Generated SEO-optimized pages, sitemap, and robots.txt.")
