@@ -6,63 +6,72 @@ apps = {
         "subtitle": "The Digital Zikr Counter",
         "icon": "appicon.png",
         "features": ["Recite and Tap.", "Handy and Easy to use", "Unlimited Tasbeeh.", "No Ads - 100% Free, 100% Offline."],
-        "url": "https://apps.apple.com/us/app/id1534763309"
+        "url": "https://apps.apple.com/us/app/id1534763309",
+        "iap": False
     },
     "aqwal": {
         "name": "Aqwal",
         "subtitle": "Inspiring Islamic Quotes",
         "icon": "appicon.png",
         "features": ["Daily Wisdom.", "Beautiful Minimalist UI.", "Share with Friends.", "Works Offline."],
-        "url": "#"
+        "url": "#",
+        "iap": False
     },
     "asmaulhusna": {
         "name": "Asma ul Husna",
         "subtitle": "99 Names of Allah",
         "icon": "appicon.png",
         "features": ["Full Meanings & Benefits.", "Beautiful Audio.", "Daily Reminder.", "Progress Tracking."],
-        "url": "#"
+        "url": "#",
+        "iap": False
     },
     "asmaunnabi": {
         "name": "Asma un Nabi",
         "subtitle": "Names of the Prophet (PBUH)",
         "icon": "appicon.png",
         "features": ["Authentic Meanings.", "Elegant Typography.", "Lightweight & Fast.", "No Subscriptions."],
-        "url": "#"
+        "url": "#",
+        "iap": False
     },
     "digipin": {
         "name": "Digipin India",
         "subtitle": "Post Office Finder",
         "icon": "appicon.png",
         "features": ["Find PIN codes instantly.", "Location based search.", "Official Data.", "Offline Support."],
-        "url": "#"
+        "url": "#",
+        "iap": False
     },
     "llm": {
         "name": "LLM Leaderboard",
         "subtitle": "AI Model Comparisons",
         "icon": "appicon.png",
         "features": ["Latest Benchmark Scores.", "Compare Performance.", "Price Tracker.", "Open Source Models."],
-        "url": "#"
+        "url": "#",
+        "iap": False
     },
     "meshly": {
         "name": "Meshly",
         "subtitle": "Private Local Network",
         "icon": "appicon.jpg",
         "features": ["Chat without Internet.", "Mesh Networking.", "End-to-End Encryption.", "Nearby Discovery."],
-        "url": "#"
+        "url": "#",
+        "iap": True
     },
     "quoteswipe": {
         "name": "QuoteSwipe",
         "subtitle": "Find Your Inspiration",
         "icon": "appicon.png",
         "features": ["Swipe through thousands of quotes.", "Curate your favorites.", "Custom background designs.", "Export for Social Media."],
-        "url": "#"
+        "url": "#",
+        "iap": True
     },
     "tt": {
         "name": "TimeTracking",
         "subtitle": "Focus & Productivity",
         "icon": "appicon.png",
         "features": ["Simple Task Timer.", "Visual Reports.", "Minimalist Interface.", "Privacy Focused."],
-        "url": "#"
+        "url": "#",
+        "iap": False
     }
 }
 
@@ -79,10 +88,6 @@ template = """<!DOCTYPE html>
         <div class="container">
             <nav>
                 <div class="logo"><a href="../index.html" style="text-decoration: none; color: inherit;">AppMemar</a></div>
-                <div class="socials">
-                    <a href="mailto:iappmemar@gmail.com">Support</a>
-                    <a href="privacy.html">Privacy</a>
-                </div>
             </nav>
         </div>
     </header>
@@ -106,9 +111,11 @@ template = """<!DOCTYPE html>
                 </ul>
             </section>
 
-            <a href="{url}" class="download-btn">Get it on the App Store</a>
+            <div style="text-align: center; margin: 60px 0;">
+                <a href="{url}" class="download-btn">Get it on the App Store</a>
+            </div>
 
-            <div class="secondary-links">
+            <div class="secondary-links" style="justify-content: center;">
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="mailto:iappmemar@gmail.com?subject={name} Support">Contact Support</a>
             </div>
@@ -154,6 +161,8 @@ privacy_template = """<!DOCTYPE html>
             <p>The {name} app is designed to be privacy-first. It functions entirely offline and does not collect any personal data. We do not track your location, access your contacts, or upload your personal files to any servers.</p>
         </section>
 
+        {iap_section}
+
         <section style="margin-bottom: 32px;">
             <h2 style="font-size: 20px; margin-bottom: 12px;">No Third-Party Sharing</h2>
             <p>We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties.</p>
@@ -177,6 +186,13 @@ privacy_template = """<!DOCTYPE html>
     </footer>
 </body>
 </html>
+"""
+
+iap_privacy = """
+        <section style="margin-bottom: 32px;">
+            <h2 style="font-size: 20px; margin-bottom: 12px;">In-App Purchases</h2>
+            <p>Transactions for In-App Purchases are handled entirely by Apple via the App Store. We do not collect or store any of your financial or payment information. We only receive confirmation from Apple when a purchase is successful to unlock your Pro features.</p>
+        </section>
 """
 
 def find_screenshot(folder):
@@ -211,7 +227,8 @@ for folder, data in apps.items():
         f.write(html)
         
     # Generate privacy.html
-    privacy_html = privacy_template.format(name=data["name"])
+    iap_section = iap_privacy if data["iap"] else ""
+    privacy_html = privacy_template.format(name=data["name"], iap_section=iap_section)
     with open(os.path.join(folder, "privacy.html"), "w") as f:
         f.write(privacy_html)
 
